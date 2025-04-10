@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { ApolloProvider } from "@apollo/client";
-import client from "./services/apollo-client.ts";
+import client from "./services/ApolloClient.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

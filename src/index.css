@@ -13,3 +13,9 @@ img {
 .centralized-container {
   @apply px-1 max-w-7xl mx-auto md:px-8;
 }
+
+@media (max-width: 400px) {
+  .grid-custom-cols-1 {
+    @apply grid-cols-1;
+  }
+}
