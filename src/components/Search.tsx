@@ -5,7 +5,7 @@ interface SearchProps {
 
 const Search = ({ searchTerm, setSearchTerm }: SearchProps) => {
   return (
-    <div className="flex centralized-container mb-10">
+    <section className="flex centralized-container mb-10">
       <input
         className="border border-gray-500 rounded-l-sm text-sm p-2 w-[250px] text-gray-500 focus:outline-none focus:border-gray-900 rounded-r-none"
         type="text"
@@ -20,7 +20,7 @@ const Search = ({ searchTerm, setSearchTerm }: SearchProps) => {
       >
         <img src="/search-icon.svg" alt="Icone de busca" />
       </button>
-    </div>
+    </section>
   );
 };
 

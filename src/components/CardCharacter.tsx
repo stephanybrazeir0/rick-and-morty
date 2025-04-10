@@ -1,6 +1,6 @@
-import { Characters } from "../types/Characters";
+import { Character } from "../types/Character";
 
-const CardCharacter = ({ data }: { data: Characters }) => {
+const CardCharacter = ({ data }: { data: Character }) => {
   return (
     <div className="bg-gray-50 p-4 rounded-sm shadow">
       <img src={data.image} alt={data.name} className="rounded-sm mb-4" />

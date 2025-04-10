@@ -3,28 +3,36 @@ import Search from "./components/Search";
 import CardCharacter from "./components/CardCharacter";
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
-import { Characters } from "./types/Characters";
+import { Character } from "./types/Character";
 import AllCharacters from "./queries/GetAllCharacters";
+import Spinner from "./components/Spinner";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const { data } = useQuery(AllCharacters);
-  //adicionar loading e error na query e tratar em baixo
-  
+  const { data, loading, error } = useQuery(AllCharacters);
+
   return (
     <>
       <Navbar />
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-      {!data || !data.characters ? (
-        <h1>Erro!</h1>
-      ) : (
-        <div className="grid grid-custom-cols-1 grid-cols-2 md:grid-cols-4 gap-5 centralized-container">
-          {data.characters.results.map((character: Characters) => (
-            <CardCharacter key={character.id} data={character} />
-          ))}
-        </div>
-      )}
+      <main className="centralized-container">
+        {loading ? (
+          <Spinner />
+        ) : error ? (
+          <div>
+            <p className="text-red-900 font-medium text-center p-2">
+              Ocorreu um erro: {error.message}
+            </p>
+          </div>
+        ) : (
+          <ul className="grid grid-custom-cols-1 grid-cols-2 md:grid-cols-4 gap-5 mb-10">
+            {data.characters.results.map((character: Character) => (
+              <CardCharacter key={character.id} data={character} />
+            ))}
+          </ul>
+        )}
+      </main>
     </>
   );
 }
