@@ -1,54 +1,53 @@
-# React + TypeScript + Vite
+# Rick and Morty 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação desenvolvida como desafio técnico com o objetivo de consumir a API GraphQL de Rick and Morty. A interface permite buscar personagens, visualizar detalhes e explorar informações relacionadas ao planeta de origem.
 
-Currently, two official plugins are available:
+## 🛠️ Tecnologias e Ferramentas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Vite**
+- **React**
+- **TypeScript**
+- **TailwindCSS**
+- **Apollo Client**
+- **React Router DOM**
+- **useDebounce**
 
-## Expanding the ESLint configuration
+## ▶️ Como rodar o projeto 
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clone o repositório:
+
+- Escolha um local na sua máquina onde deseja salvar o projeto, abra o terminal (ou prompt de comando) nesse diretório e cole o comando abaixo.
+
+```bash
+https://github.com/stephanybrazeir0/rick-and-morty.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Acesse a pasta do projeto
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2. Instale as dependências:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install
 ```
+
+3. Execute o projeto com:
+
+```bash
+npm run dev
+```
+
+4. Acesse no navegador:
+
+```bash
+http://localhost:5173/
+```
+
+**Certifique-se de ter o Node.js instalado em sua máquina.**
+
+### 💡 Decisões Técnicas e Observações
+
+- Utilização do debounce para evitar múltiplas requisições à API enquanto o usuário digita na busca.
+- Implementação de um spinner de carregamento utilizando o componente do Flowbite para melhorar a experiência do usuário durante o loading.
+- A escolha do Vite se deu por sua configuração simples e por ser mais adequado a um projeto pequeno, sem a complexidade necessária para justificar o uso do Next.js.
+- Foi a minha primeira vez utilizando **GraphQL** e achei a experiência bem interessante. Gostei bastante de trabalhar com a forma como as queries são feitas.
