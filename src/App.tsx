@@ -44,7 +44,7 @@ function App() {
           </ul>
         ) : (
           <div>
-            <p className="text-center text-gray-800 mt-4">
+            <p className="text-center text-gray-800">
               Nenhum personagem encontrado.
             </p>
           </div>

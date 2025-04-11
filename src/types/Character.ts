@@ -17,3 +17,14 @@ export interface DeitalingCharacter {
     name: string;
   };
 }
+
+export interface CharacterOrigin {
+  id: string;
+  name: string;
+  image: string;
+  species: string;
+  origin: {
+    id: string;
+    name: string;
+  };
+}
