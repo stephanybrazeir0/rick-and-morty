@@ -4,7 +4,7 @@ import CardDetailingPlanet from "../components/CardDetailingPlanet";
 import GetPlanet from "../queries/GetPlanet";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { CharacterOrigin } from "../types/Character";
+import { CharacterOrigin, Resident } from "../types/Character";
 import CardCharacter from "../components/CardCharacter";
 import CharactersWithOrigin from "../queries/CharactersWithOrigin";
 
@@ -30,6 +30,11 @@ const PlanetPage = () => {
     { variables: { characterId } }
   );
 
+  const filteredCharactersFromPlanet =
+    charactersData?.character?.origin?.residents?.filter(
+      (character: Resident) => character?.origin?.id === params.id
+    );
+
   return (
     <>
       <Navbar />
@@ -50,13 +55,11 @@ const PlanetPage = () => {
             </h2>
             {charactersLoading ? (
               <Spinner />
-            ) : charactersData.character.origin.residents.length > 0 ? (
+            ) : filteredCharactersFromPlanet.length > 0 ? (
               <ul className="grid grid-custom-cols-1 grid-cols-2 md:grid-cols-4 gap-5 mb-10">
-                {charactersData.character.origin.residents.map(
-                  (char: CharacterOrigin) => (
-                    <CardCharacter key={char.id} data={char} />
-                  )
-                )}
+                {filteredCharactersFromPlanet.map((char: CharacterOrigin) => (
+                  <CardCharacter key={char.id} data={char} />
+                ))}
               </ul>
             ) : (
               <div>

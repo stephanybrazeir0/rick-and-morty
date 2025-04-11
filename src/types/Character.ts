@@ -28,3 +28,13 @@ export interface CharacterOrigin {
     name: string;
   };
 }
+
+export interface Resident {
+  id: string;
+  name: string;
+  image: string;
+  species: string;
+  origin: {
+    id: string;
+  };
+}

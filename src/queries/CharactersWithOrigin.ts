@@ -9,6 +9,9 @@ const CharactersWithOrigin = gql`
           name
           image
           species
+          origin {
+            id
+          }
         }
       }
     }
