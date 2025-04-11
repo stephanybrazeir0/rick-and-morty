@@ -8,10 +8,28 @@ import { useDebounce } from "react-use";
 import { Character } from "./types/Character";
 import AllCharacters from "./queries/GetAllCharacters";
 import GetCharacter from "./queries/GetCharacter";
+import Pagination from "./components/Pagination";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [debounceSearchTerm, setDebounceSearchTerm] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentCharacterDisplay, setCurrentCharacterDisplay] =
+    useState<number>(20);
+
+  const handleClickPrev = () => {
+    if (currentPage === 1) return;
+    setCurrentPage(currentPage - 1);
+    setCurrentCharacterDisplay(currentCharacterDisplay - 20);
+  };
+
+  const handleClickNext = () => {
+    const totalPages = data?.characters?.info?.pages;
+    const hasNextPage = !!data?.characters?.info?.next;
+    if (currentPage === totalPages || !hasNextPage) return;
+    setCurrentPage(currentPage + 1);
+    setCurrentCharacterDisplay(currentCharacterDisplay + 20);
+  };
 
   useDebounce(() => setDebounceSearchTerm(searchTerm), 500, [searchTerm]);
 
@@ -19,9 +37,11 @@ function App() {
 
   const { data, loading, error } = useQuery(
     isSearching ? GetCharacter : AllCharacters,
-    isSearching ? { variables: { searchTerm: debounceSearchTerm } } : undefined
+    isSearching
+      ? { variables: { searchTerm: debounceSearchTerm } }
+      : { variables: { currentPage } }
   );
-
+  console.log(data);
   return (
     <>
       <Navbar />
@@ -50,6 +70,20 @@ function App() {
           </div>
         )}
       </main>
+
+      <div className="centralized-container mb-5">
+        <div className="flex justify-between items-center">
+          <h3>
+            Página {currentPage} de {data?.characters?.info?.pages}
+          </h3>
+
+          <Pagination
+            info={data?.characters?.info}
+            handleClickPrev={handleClickPrev}
+            handleClickNext={handleClickNext}
+          />
+        </div>
+      </div>
     </>
   );
 }

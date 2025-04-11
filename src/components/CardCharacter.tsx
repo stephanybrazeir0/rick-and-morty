@@ -5,7 +5,7 @@ const CardCharacter = ({ data }: { data: Character }) => {
   return (
     <div className="bg-gray-50 p-4 rounded-sm shadow">
       <Link to={`/character/${data.id}`}>
-        <img src={data.image} alt={data.name} className="rounded-sm mb-4" />
+        <img src={data.image} alt={data.name} className="rounded-sm mb-4 w-full" />
         <h1 className="text-lg font-medium text-gray-800">{data.name}</h1>
         <p className="text-sm text-gray-600">{data.species}</p>
       </Link>

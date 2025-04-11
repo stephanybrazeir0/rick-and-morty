@@ -1,10 +1,13 @@
 import { gql } from "@apollo/client";
 
 const AllCharacters = gql`
-  query{
-    characters(page: 1){
+  query($currentPage: Int!){
+    characters(page: $currentPage){
       info {
         pages
+        count
+        prev
+        next
       }
       results {
         id
