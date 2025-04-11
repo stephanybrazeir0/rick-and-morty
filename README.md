@@ -2,6 +2,8 @@
 
 Aplicação desenvolvida como desafio técnico com o objetivo de consumir a API GraphQL de Rick and Morty. A interface permite buscar personagens, visualizar detalhes e explorar informações relacionadas ao planeta de origem.
 
+🎉 Deploy: https://rick-and-morty-stephany.netlify.app/
+
 ## 🛠️ Tecnologias e Ferramentas
 
 - **Vite**
