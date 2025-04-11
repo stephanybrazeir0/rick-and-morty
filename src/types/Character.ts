@@ -13,6 +13,7 @@ export interface DeitalingCharacter {
   species: string;
   gender: string;
   origin: {
+    id: string;
     name: string;
   };
 }

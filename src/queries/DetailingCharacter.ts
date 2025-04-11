@@ -12,8 +12,6 @@ const DetailingCharacter = gql`
       origin {
         id
         name
-        type
-        dimension
       }
     }
   }
