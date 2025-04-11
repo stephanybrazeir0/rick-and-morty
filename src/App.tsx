@@ -1,19 +1,25 @@
 import Navbar from "./components/Navbar";
 import Search from "./components/Search";
 import CardCharacter from "./components/CardCharacter";
+import Spinner from "./components/Spinner";
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
+import { useDebounce } from "react-use";
 import { Character } from "./types/Character";
 import AllCharacters from "./queries/GetAllCharacters";
 import GetCharacter from "./queries/GetCharacter";
-import Spinner from "./components/Spinner";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const isSearching = searchTerm.trim() !== "";
+  const [debounceSearchTerm, setDebounceSearchTerm] = useState<string>("");
+
+  useDebounce(() => setDebounceSearchTerm(searchTerm), 500, [searchTerm]);
+
+  const isSearching = debounceSearchTerm.trim() !== "";
+
   const { data, loading, error } = useQuery(
     isSearching ? GetCharacter : AllCharacters,
-    isSearching ? { variables: { searchTerm } } : undefined
+    isSearching ? { variables: { searchTerm: debounceSearchTerm } } : undefined
   );
 
   return (
