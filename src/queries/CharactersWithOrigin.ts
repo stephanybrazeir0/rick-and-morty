@@ -1,16 +1,14 @@
 import { gql } from "@apollo/client";
 
 const CharactersWithOrigin = gql`
-  query {
-    characters(page: 1) {
-      results {
-        id
-        name
-        image
-        species
-        origin {
+  query ($characterId: ID!) {
+    character(id: $characterId) {
+      origin {
+        residents {
           id
           name
+          image
+          species
         }
       }
     }

@@ -2,14 +2,21 @@ import Navbar from "../components/Navbar";
 import Spinner from "../components/Spinner";
 import CardDetailingPlanet from "../components/CardDetailingPlanet";
 import GetPlanet from "../queries/GetPlanet";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import CharactersWithOrigin from "../queries/CharactersWithOrigin";
 import { CharacterOrigin } from "../types/Character";
 import CardCharacter from "../components/CardCharacter";
+import CharactersWithOrigin from "../queries/CharactersWithOrigin";
 
 const PlanetPage = () => {
+  const navigate = useNavigate();
   const params = useParams();
+  const [searchParams] = useSearchParams();
+  const characterId = searchParams.get("characterId");
+  if (!characterId) {
+    navigate("/", { replace: true });
+  }
+
   const {
     data: planetData,
     loading: planetLoading,
@@ -18,13 +25,10 @@ const PlanetPage = () => {
     variables: { id: params.id },
   });
 
-  const { data: charactersData, loading: charactersLoading } =
-    useQuery(CharactersWithOrigin);
-
-  const filteredCharacters =
-    charactersData?.characters?.results?.filter(
-      (char: CharacterOrigin) => char.origin?.id === params.id
-    ) || [];
+  const { data: charactersData, loading: charactersLoading } = useQuery(
+    CharactersWithOrigin,
+    { variables: { characterId } }
+  );
 
   return (
     <>
@@ -46,11 +50,13 @@ const PlanetPage = () => {
             </h2>
             {charactersLoading ? (
               <Spinner />
-            ) : filteredCharacters.length > 0 ? (
+            ) : charactersData.character.origin.residents.length > 0 ? (
               <ul className="grid grid-custom-cols-1 grid-cols-2 md:grid-cols-4 gap-5 mb-10">
-                {filteredCharacters.map((char: CharacterOrigin) => (
-                  <CardCharacter key={char.id} data={char} />
-                ))}
+                {charactersData.character.origin.residents.map(
+                  (char: CharacterOrigin) => (
+                    <CardCharacter key={char.id} data={char} />
+                  )
+                )}
               </ul>
             ) : (
               <div>

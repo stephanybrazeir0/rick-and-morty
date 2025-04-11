@@ -26,7 +26,10 @@ const CardDetailingCharacter = ({ data }: { data: DeitalingCharacter }) => {
         <p className="sm:text-lg text-gray-600">{data.species}</p>
         <p className="sm:text-lg text-gray-600">{data.gender}</p>
         {data.origin.name !== "unknown" ? (
-          <Link to={`/planet/${data.origin.id}`} className="sm:text-lg text-gray-600 underline">
+          <Link
+            to={`/planet/${data.origin.id}?characterId=${data.id}`}
+            className="sm:text-lg text-gray-600 underline"
+          >
             {data.origin.name}
           </Link>
         ) : (
