@@ -41,7 +41,7 @@ function App() {
       ? { variables: { searchTerm: debounceSearchTerm } }
       : { variables: { currentPage } }
   );
-  console.log(data);
+
   return (
     <>
       <Navbar />
