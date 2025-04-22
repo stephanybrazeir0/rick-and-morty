@@ -1,6 +1,6 @@
 # Rick and Morty 
 
-Aplicação desenvolvida como desafio técnico com o objetivo de consumir a API GraphQL de Rick and Morty. A interface permite buscar personagens, visualizar detalhes e explorar informações relacionadas ao planeta de origem.
+Aplicação desenvolvida como teste técnico com o objetivo de consumir a API GraphQL de Rick and Morty. A interface permite buscar personagens, visualizar detalhes e explorar informações relacionadas ao planeta de origem.
 
 🎉 Deploy: https://rick-and-morty-stephany.netlify.app/
 
@@ -22,7 +22,7 @@ Aplicação desenvolvida como desafio técnico com o objetivo de consumir a API 
 - Escolha um local na sua máquina onde deseja salvar o projeto, abra o terminal (ou prompt de comando) nesse diretório e cole o comando abaixo.
 
 ```bash
-https://github.com/stephanybrazeir0/rick-and-morty.git
+git clone https://github.com/stephanybrazeir0/rick-and-morty.git
 ```
 
 - Acesse a pasta do projeto
